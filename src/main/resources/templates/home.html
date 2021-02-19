@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home page!</title>
+</head>
+<body>
+    <h1>What's up!</h1>
+    <hr>
+    <h2> Under construction ... </h2>
+    <a th:href="@{/register}">Link to registration form ... </a>
+    <br><br>
+    <a th:href="@{/secret}">Show me some secrets ...</a>
+    <br><br>
+    <div>
+        <form name="f" th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+    <!--
+    <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') and #authorization.expression('...') }">
+        This will only be displayed if authenticated user has role ROLE_ADMIN.
+    </div>
+    -->
+</body>
+</html>
