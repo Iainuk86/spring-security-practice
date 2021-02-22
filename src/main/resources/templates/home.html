@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Home page!</title>
 </head>
@@ -12,11 +12,24 @@
     <br><br>
     <a th:href="@{/secret}">Show me some secrets ...</a>
     <br><br>
-    <div>
+
+    <div sec:authorize="isAuthenticated()">
         <form name="f" th:action="@{/logout}" method="post">
             <input type="submit" value="Logout"/>
         </form>
     </div>
+
+    <div th:if="${param.logout}" class="alert alert-success">
+        You have been logged out.
+        <br><br>
+    </div>
+
+    <div sec:authorize="isAnonymous()">
+        <form name="f" th:action="@{/login}" method="get">
+            <input type="submit" value="Login"/>
+        </form>
+    </div>
+
     <!--
     <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') and #authorization.expression('...') }">
         This will only be displayed if authenticated user has role ROLE_ADMIN.
